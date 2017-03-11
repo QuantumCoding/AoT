@@ -7,7 +7,6 @@ import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
 
-import com.Engine.PhysicsEngine.Render.PhysicsShader;
 import com.Engine.RenderEngine.RenderEngine;
 import com.Engine.RenderEngine.Models.Model;
 import com.Engine.RenderEngine.Shaders.Renderer;
@@ -17,6 +16,7 @@ public class BuildingRenderer extends Renderer<Model, BuildingRenderProperties> 
 
 	public BuildingRenderer(Shader shader) {
 		super(shader);
+		setRenderBehind(true);
 	}
 
 	public void renderModels() {
@@ -31,7 +31,7 @@ public class BuildingRenderer extends Renderer<Model, BuildingRenderProperties> 
 			
 			for(BuildingRenderProperties property : renders.get(renderSection)) {
 				shader.loadTransformationMatrix(property.getTransformMatrix());
-
+				
 				glBindVertexArray(renderSection.getVAOId());
 				glEnableVertexAttribArray(Shader.ATTRIBUTE_LOC_POSITIONS);
 				glEnableVertexAttribArray(Shader.ATTRIBUTE_LOC_TEXCOORDS);

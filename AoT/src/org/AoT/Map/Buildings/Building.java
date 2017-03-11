@@ -1,6 +1,6 @@
 package org.AoT.Map.Buildings;
 
-import org.AoT.Map.Buildings.BuldingManager.BuildingData;
+import org.AoT.Map.Buildings.BuildingManager.BuildingData;
 import org.AoT.Map.Buildings.Render.BuildingRenderProperties;
 
 import com.Engine.PhysicsEngine.Bodies.StaticBody;
@@ -16,13 +16,12 @@ public class Building {
 
 	public Building(String modelPath, String texturePath) { this(modelPath, texturePath, (String) null); } 
 	public Building(String modelPath, String texturePath, Transform transform) { this(modelPath, texturePath, null, transform); } 
-	public Building(String modelPath, String texturePath, String colliderPath) { 
-		this(modelPath, texturePath, colliderPath, new Transform()); } 
+	public Building(String modelPath, String texturePath, String colliderPath) { this(modelPath, texturePath, colliderPath, new Transform()); } 
 	
 	public Building(String modelPath, String texturePath, String colliderPath, Transform transform) {
 		this.transform = transform;
 		
-		BuildingData data = BuldingManager.loadBuilding(modelPath, texturePath, colliderPath);
+		BuildingData data = BuildingManager.loadBuilding(modelPath, texturePath, colliderPath);
 		this.model = data.model;
 		this.body = new StaticBody(data.body);
 	}
@@ -32,4 +31,5 @@ public class Building {
 	}
 	
 	public StaticBody getBody() { return body; }
+	public Model getModel() { return model; }
 }

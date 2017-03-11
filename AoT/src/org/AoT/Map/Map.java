@@ -11,7 +11,7 @@ public abstract class Map {
 	private String mapName;
 	
 	private Engine engine;
-	private ArrayList<Building> buildings; 
+	protected ArrayList<Building> buildings; 
 	
 	private boolean loaded;
 	

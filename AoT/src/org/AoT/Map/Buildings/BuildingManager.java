@@ -12,7 +12,7 @@ import com.Engine.RenderEngine.Models.ModelLoader;
 import com.Engine.RenderEngine.Models.ModelData.ModelData;
 import com.Engine.RenderEngine.Textures.Texture2D;
 
-public final class BuldingManager {
+public final class BuildingManager {
 	public static final BuildingShader BuildingShader = new BuildingShader();
 
 	private static HashMap<String, Texture2D> buildingTextures = new HashMap<>();
@@ -25,12 +25,13 @@ public final class BuldingManager {
 			texture = ImageLoader.loadTexture(texturePath);
 			buildingTextures.put(texturePath, texture);
 		}
-		
-		Model model = buildingModels.get(modelPath).get(texture);
+
+		Model model = null;
+		HashMap<Texture2D, Model> maped = buildingModels.get(modelPath);
+		if(maped != null) model = maped.get(texture);
 		
 		if(model == null) {
 			ModelData modelData = null;
-			HashMap<Texture2D, Model> maped = buildingModels.get(modelPath);
 			
 			if(maped == null) {
 				maped = new HashMap<>();
@@ -72,5 +73,5 @@ public final class BuldingManager {
 		CollisionMesh body;
 	}
 	
-	private BuldingManager() {}
+	private BuildingManager() {}
 }
