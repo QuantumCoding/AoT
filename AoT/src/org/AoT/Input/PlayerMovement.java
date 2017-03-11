@@ -21,7 +21,11 @@ public class PlayerMovement {
 	}
 	
 	public void update(float delta){
-		Vector3f rotation = new Vector3f(0,movingBody.getRotation().y,0);
+		float shift = (float)Math.PI/2;
+		Vector3f rotation = new Vector3f(0,movingBody.getRotation().y,0).toRadians();
+		
+		Vector3f caped = movingBody.getRotation().capMax(100).capMin(-100);
+		movingBody.getRotation().setX(caped.x);
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE) && !escapeLastFrame){
 			Mouse.setGrabbed(!Mouse.isGrabbed());
@@ -32,24 +36,26 @@ public class PlayerMovement {
 		}
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)){
-			movingBody.addForce(new Vector3f(0,0,speed * delta).rotate(rotation));
+			movingBody.addForce(new Vector3f(-speed * delta,0,-speed * delta).multiply((float)Math.cos(rotation.y + shift), 1f, (float)Math.sin(rotation.y + shift)));
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_S)){
-			movingBody.addForce(new Vector3f(0,0,-speed * delta).rotate(rotation));
+			movingBody.addForce(new Vector3f(speed * delta,0,speed * delta).multiply((float)Math.cos(rotation.y + shift), 1f, (float)Math.sin(rotation.y + shift)));
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)){
-			movingBody.addForce(new Vector3f(-speed * delta,0,0).rotate(rotation));
+			movingBody.addForce(new Vector3f(-speed * delta,0,-speed * delta).multiply((float)Math.cos(rotation.y), 1f, (float)Math.sin(rotation.y)));
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_D)){
-			movingBody.addForce(new Vector3f(speed * delta,0,0).rotate(rotation));
+			movingBody.addForce(new Vector3f(speed * delta,0,speed * delta).multiply((float)Math.cos(rotation.y), 1f, (float)Math.sin(rotation.y)));
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) && !spaceLastFrame){
-			movingBody.addForce(new Vector3f(100,0,0));
+			movingBody.addForce(new Vector3f(0,5,0));
 			spaceLastFrame = true;
 		}
 		else if(!Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
 			spaceLastFrame = false;
 		}
+		
+//		System.out.println(movingBody.getRotation());
 		
 		if(Mouse.isGrabbed()){
 			if(Math.abs(movingBody.getRotation().x) <= 100){

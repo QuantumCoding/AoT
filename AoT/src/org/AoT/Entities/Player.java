@@ -40,7 +40,7 @@ public class Player {
 		initModel();
 		initPhysics();
 		
-		movement = new PlayerMovement(body, .8f);
+		movement = new PlayerMovement(body, .6f);
 	}
 	
 	private void initPhysics() {
@@ -64,7 +64,7 @@ public class Player {
 	public void update(){
 		movement.update((float) engine.getWindow().getFrameTime());
 		
-//		body.addForce(new Vector3f(0, -5, 0));
+		body.addForce(new Vector3f(0, -.5, 0));
 		
 		camera.x = body.getPosition().x;
 		camera.y = body.getPosition().y;
