@@ -7,7 +7,6 @@ import javax.imageio.ImageIO;
 import org.AoT.Input.CameraMovement;
 import org.AoT.Map.Buildings.BuildingManager;
 import org.AoT.Map.Buildings.Render.BuildingRenderProperties;
-import org.AoT.Map.Buildings.Render.BuildingShader;
 import org.AoT.Start.AoT;
 import org.AoT.Start.Engine;
 
@@ -67,6 +66,10 @@ public class Player {
 		camera.x = body.getPosition().x;
 		camera.y = body.getPosition().y;
 		camera.z = body.getPosition().z;
+
+		camera.rotX = body.getRotation().x;
+		camera.rotY = body.getRotation().y;
+		camera.rotX = body.getRotation().z;
 	}
 	
 	public void render(Camera camera) {
