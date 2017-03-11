@@ -5,8 +5,8 @@ import org.lwjgl.util.vector.Matrix4f;
 import com.Engine.RenderEngine.Shaders.Shader;
 
 public class BuildingShader extends Shader {
-	private static final String VERTEX_SHADER_LOC = "res/shaders/BuildingShader.vsh";
-	private static final String FRAGMENT_SHADER_LOC = "res/shaders/BuildingShader.fsh";
+	private static final String VERTEX_SHADER_LOC = "res/shaders/buildings/BuildingShader.vsh";
+	private static final String FRAGMENT_SHADER_LOC = "res/shaders/buildings/BuildingShader.fsh";
 
 	private int location_transformationMatrix;
 	private int location_projectionMatrix;

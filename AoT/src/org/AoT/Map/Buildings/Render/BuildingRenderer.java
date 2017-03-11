@@ -21,12 +21,14 @@ public class BuildingRenderer extends Renderer<Model, BuildingRenderProperties> 
 
 	public void renderModels() {
 		for(Model renderSection : renders.keySet()) {
-			PhysicsShader shader = (PhysicsShader) super.getShader();
+			BuildingShader shader = (BuildingShader) super.getShader();
 			shader.bind();
 			
 			shader.loadProjectionMatrix(Shader.getProjectionMatrix());
 			shader.loadViewMatrix(Shader.getViewMatrix());
 
+			renderSection.getTexture().bind();
+			
 			for(BuildingRenderProperties property : renders.get(renderSection)) {
 				shader.loadTransformationMatrix(property.getTransformMatrix());
 

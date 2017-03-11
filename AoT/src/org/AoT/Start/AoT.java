@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import org.AoT.Input.CameraMovement;
+import org.AoT.Map.Buildings.Render.BuildingRenderProperties;
+import org.AoT.Map.Buildings.Render.BuildingShader;
 import org.lwjgl.LWJGLException;
 
 import com.Engine.RenderEngine.Lights.Light;
@@ -37,7 +39,8 @@ public class AoT {
 	public void run() {
 		Camera camera = engine.getCamera();
 		
-		DefaultShader shader = new DefaultShader();
+		BuildingShader shader = new BuildingShader();
+		shader.getRenderer().setRenderBehind(true);
 		engine.getRenderEngine().addRenderer(shader.getRenderer());
 		
 		Model model = new Model(ModelLoader.loadOBJ("res/models/TexturedCube.obj"));
@@ -49,23 +52,15 @@ public class AoT {
 		
 		model.setTexture(texture);
 		
-		Light light = new Light(new Vector3f(), new Vector3f(0, 1, 0));
-		ArrayList<Light> lights = new ArrayList<>();
-		lights.add(light);
-		
 		while(!engine.getWindow().isCloseRequested()) {
 			movement.update((float) engine.getWindow().getFrameTime());
 			
 //			if(engine.getWindow().getFrameTime() < 1)
 //				camera.moveForward((float) (-0.1f * engine.getWindow().getFrameTime()));
 			
-			light.setPosition(camera.getPosition());
 //			System.out.println(camera.getPosition());
 			
-			model.render(new DefaultRenderProperties(new Transform(new Vector3f(0, 0, 0), new Vector3f(), new Vector3f(1))), camera);
-			
-			shader.bind();
-			shader.loadLights(lights);
+			model.render(new BuildingRenderProperties(new Transform(new Vector3f(0, 0, 0), new Vector3f(), new Vector3f(1))), camera);
 			
 			engine.getRenderEngine().render(camera);
 			engine.getWindow().update();
