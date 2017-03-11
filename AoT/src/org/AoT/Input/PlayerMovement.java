@@ -21,6 +21,8 @@ public class PlayerMovement {
 	}
 	
 	public void update(float delta){
+		Vector3f rotation = new Vector3f(0,movingBody.getRotation().y,0);
+		
 		if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE) && !escapeLastFrame){
 			Mouse.setGrabbed(!Mouse.isGrabbed());
 			escapeLastFrame = true;
@@ -30,16 +32,16 @@ public class PlayerMovement {
 		}
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)){
-			movingBody.addForce(new Vector3f(0,0,speed * delta).rotate(new Vector3f(0,movingBody.getRotation().y+90,0)));
+			movingBody.addForce(new Vector3f(0,0,speed * delta).rotate(rotation));
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_S)){
-			movingBody.addForce(new Vector3f(0,0,-speed * delta).rotate(new Vector3f(0,movingBody.getRotation().y+90,0)));
+			movingBody.addForce(new Vector3f(0,0,-speed * delta).rotate(rotation));
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)){
-			movingBody.addForce(new Vector3f(-speed * delta,0,0).rotate(new Vector3f(0,movingBody.getRotation().y,0)));
+			movingBody.addForce(new Vector3f(-speed * delta,0,0).rotate(rotation));
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_D)){
-			movingBody.addForce(new Vector3f(speed * delta,0,0).rotate(new Vector3f(0,movingBody.getRotation().y,0)));
+			movingBody.addForce(new Vector3f(speed * delta,0,0).rotate(rotation));
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) && !spaceLastFrame){
 			movingBody.addForce(new Vector3f(100,0,0));

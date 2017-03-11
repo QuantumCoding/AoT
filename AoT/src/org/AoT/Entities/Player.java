@@ -64,13 +64,15 @@ public class Player {
 	public void update(){
 		movement.update((float) engine.getWindow().getFrameTime());
 		
+//		body.addForce(new Vector3f(0, -5, 0));
+		
 		camera.x = body.getPosition().x;
 		camera.y = body.getPosition().y;
 		camera.z = body.getPosition().z;
 
 		camera.rotX = body.getRotation().x;
 		camera.rotY = body.getRotation().y;
-		camera.rotX = body.getRotation().z;
+		camera.rotZ = body.getRotation().z;
 	}
 	
 	public void render(Camera camera) {
