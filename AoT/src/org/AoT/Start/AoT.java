@@ -2,6 +2,7 @@ package org.AoT.Start;
 
 import org.lwjgl.LWJGLException;
 
+import com.Engine.PhysicsEngine.Detection.Intersection.Tests.MovingEllipsoidMeshIntersectionTest;
 import com.Engine.RenderEngine.Util.Camera;
 
 public class AoT {
@@ -12,6 +13,8 @@ public class AoT {
 		
 		engine.getWindow().initDisplay();
 		engine.init();
+		
+		engine.getPhysicsEngine().addIntersectionTest(new MovingEllipsoidMeshIntersectionTest());
 	}
 	
 	public void run() {
