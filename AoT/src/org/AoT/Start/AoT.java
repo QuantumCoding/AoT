@@ -43,11 +43,11 @@ public class AoT {
 		shader.getRenderer().setRenderBehind(true);
 		engine.getRenderEngine().addRenderer(shader.getRenderer());
 		
-		Model model = new Model(ModelLoader.loadOBJ("res/models/TexturedCube.obj"));
+		Model model = new Model(ModelLoader.loadOBJ("res/models/basicperson.obj"));
 		model.setShader(shader);
 		
 		Texture2D texture = null;
-		try { texture = new Texture2D(ImageIO.read(AoT.class.getResource("/textures/Gold.png")));
+		try { texture = new Texture2D(ImageIO.read(AoT.class.getResource("/textures/Person.png")));
 		} catch(IOException e) { }
 		
 		model.setTexture(texture);
