@@ -5,6 +5,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import com.Engine.RenderEngine.Util.Camera;
+import com.Engine.Util.Vectors.Vector3f;
 
 public class CameraMovement {
 	private Engine engine;
@@ -28,6 +29,9 @@ public class CameraMovement {
 	}
 	
 	public void update(float delta) {
+		Vector3f caped = camera.getRotation().capMax(100).capMin(-100);
+		camera.rotX = caped.x;
+		
 		if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE) && !escapeLastFrame){
 			Mouse.setGrabbed(!Mouse.isGrabbed());
 			escapeLastFrame = true;
@@ -56,8 +60,9 @@ public class CameraMovement {
 		}
 		
 		if(Mouse.isGrabbed()){
-//			if(Math.abs(camera.rotX) > 100)
-			camera.rotateX(-Mouse.getDY() * mouseSensetivity);
+			if(Math.abs(camera.rotX) <= 100){
+				camera.rotateX(-Mouse.getDY() * mouseSensetivity);
+			}
 			camera.rotateY(Mouse.getDX() * mouseSensetivity);
 		}
 	}
