@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import org.AoT.Input.CameraMovement;
+import org.AoT.Input.PlayerMovement;
 import org.AoT.Map.Buildings.BuildingManager;
 import org.AoT.Map.Buildings.Render.BuildingRenderProperties;
 import org.AoT.Start.AoT;
@@ -28,7 +29,7 @@ public class Player {
 	private Model model;
 	private MovingBody body;
 	
-	private CameraMovement movement;
+	private PlayerMovement movement;
 	
 	public Player(Engine engine){
 		this.engine = engine;
@@ -39,7 +40,7 @@ public class Player {
 		initModel();
 		initPhysics();
 		
-		movement = new CameraMovement(engine, camera, .8f, .6f, .8f);
+		movement = new PlayerMovement(body, .8f);
 	}
 	
 	private void initPhysics() {

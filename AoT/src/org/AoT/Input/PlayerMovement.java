@@ -17,6 +17,7 @@ public class PlayerMovement {
 		this.movingBody = movingBody;
 		this.mouseSensetivity = mouseSensetivity;
 		speed = 1;
+		Mouse.setGrabbed(true);
 	}
 	
 	public void update(float delta){
