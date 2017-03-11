@@ -17,13 +17,13 @@ public class CameraMovement {
 	
 	private boolean escapeLastFrame;
 	
-	public CameraMovement(Engine engine, float movementSpeed, float jumpSpeed, float mouseSensitivity){
+	public CameraMovement(Engine engine, Camera camera, float movementSpeed, float jumpSpeed, float mouseSensitivity){
 		this.engine = engine;
-		this.camera = engine.getCamera();
 		
 		this.movementSpeed = movementSpeed;
 		this.jumpSpeed = jumpSpeed;
 		this.mouseSensetivity = mouseSensitivity;
+		this.camera = camera;
 		
 		Mouse.setGrabbed(true);
 	}
