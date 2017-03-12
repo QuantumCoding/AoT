@@ -41,17 +41,20 @@ public class PlayerMovement {
 			escapeLastFrame = false;
 		}
 		
+		if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
+			amount = amount.multiply(2,0,2);
+		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)){
 			movingBody.addForce(amount.multiply((float) -Math.cos(rotY + shift), 0, (float) -Math.sin(rotY + shift)));
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_S)){
-			movingBody.addForce(amount.multiply((float)  Math.cos(rotY + shift), 0, (float)  Math.sin(rotY + shift)));
+			movingBody.addForce(amount.multiply((float) Math.cos(rotY + shift), 0, (float)  Math.sin(rotY + shift)));
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)){
 			movingBody.addForce(amount.multiply((float) -Math.cos(rotY), 0, (float) -Math.sin(rotY)));
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_D)){
-			movingBody.addForce(amount.multiply((float)  Math.cos(rotY), 0, (float) Math.sin(rotY)));
+			movingBody.addForce(amount.multiply((float) Math.cos(rotY), 0, (float) Math.sin(rotY)));
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) && !spaceLastFrame){
 			movingBody.addForce(new Vector3f(0, 3, 0));
