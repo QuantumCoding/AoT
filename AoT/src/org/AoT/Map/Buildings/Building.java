@@ -24,6 +24,10 @@ public class Building {
 		BuildingData data = BuildingManager.loadBuilding(modelPath, texturePath, colliderPath);
 		this.model = data.model;
 		this.body = new StaticBody(data.body);
+		
+		this.body.setPosition(transform.getTranslation());
+		this.body.setRotation(transform.getRotation());
+		this.body.setScale(transform.getScale());
 	}
 	
 	public void render(Camera camera) {

@@ -29,7 +29,7 @@ public class AoT {
 		Map map = new Map("Test Map", engine) {
 			protected void initBuildings() {
 				buildings.add(new Building("res/models/Building1.obj", "/textures/HouseTexture2.png",
-						new Transform(new Vector3f(10, 0, 0), new Vector3f(), new Vector3f(1))));
+						new Transform(new Vector3f(10, 0, 0), new Vector3f(), new Vector3f(7, 3, 7))));
 				buildings.add(new Building("res/models/Wall.obj", "/textures/Walls Texture.png"));
 			}
 		};
@@ -45,8 +45,8 @@ public class AoT {
 		}
 	}
 	
-	public void update(){
-		engine.getPlayer().update();
+	public void update() {
+		engine.getPlayer().update((float) engine.getWindow().getFrameTime());
 		engine.getPhysicsEngine().simulate((float) engine.getWindow().getFrameTime());
 	}
 	

@@ -31,6 +31,8 @@ public class Player {
 	
 	private PlayerMovement movement;
 	
+	private MovingBody thing;
+	
 	public Player(Engine engine){
 		this.engine = engine;
 		
@@ -40,7 +42,7 @@ public class Player {
 		initModel();
 		initPhysics();
 		
-		movement = new PlayerMovement(body, .6f);
+		movement = new PlayerMovement(this, body, .6f);
 	}
 	
 	private void initPhysics() {
@@ -61,18 +63,21 @@ public class Player {
 		model.setTexture(texture);
 	}
 	
-	public void update(){
-		movement.update((float) engine.getWindow().getFrameTime());
+	public void update(float delta) {
+		movement.update(delta);
 		
-		body.addForce(new Vector3f(0, -.5, 0));
+		body.addForce(new Vector3f(0, -5, 0).multiply(delta));
+		body.setVelocity(body.getVelocity().multiply(0.9f, 0.99f, 0.9f));
 		
 		camera.x = body.getPosition().x;
 		camera.y = body.getPosition().y;
 		camera.z = body.getPosition().z;
 
-		camera.rotX = body.getRotation().x;
+		camera.rotX += body.getRotation().x;
 		camera.rotY = body.getRotation().y;
 		camera.rotZ = body.getRotation().z;
+		
+		body.getRotation().setX(0).setZ(0);
 	}
 	
 	public void render(Camera camera) {
@@ -80,7 +85,7 @@ public class Player {
 				new Transform(body.getPosition().subtract(0, 3.5f, -0.2f), body.getRotation(), body.getScale())),
 			camera);
 	}
-
+	
 	public Camera getCamera() { return camera; }
 	public Model getModel() { return model; }
 }
