@@ -73,7 +73,7 @@ public class Player {
 		camera.y = body.getPosition().y;
 		camera.z = body.getPosition().z;
 
-		camera.rotX += body.getRotation().x;
+//		camera.rotX += body.getRotation().x;
 		camera.rotY = body.getRotation().y;
 		camera.rotZ = body.getRotation().z;
 		

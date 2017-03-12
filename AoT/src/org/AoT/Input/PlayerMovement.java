@@ -30,9 +30,6 @@ public class PlayerMovement {
 		
 		Vector3f amount = new Vector3f(speed * delta, 0, speed * delta);
 		
-		Vector3f caped = movingBody.getRotation().capMax(100).capMin(-100);
-		movingBody.getRotation().setX(caped.x);
-		
 		if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE) && !escapeLastFrame){
 			Mouse.setGrabbed(!Mouse.isGrabbed());
 			escapeLastFrame = true;
@@ -71,9 +68,13 @@ public class PlayerMovement {
 		}
 		
 		if(Mouse.isGrabbed()){
-			if(Math.abs(movingBody.getRotation().x) <= 100){
-				movingBody.addRotation(new Vector3f(-Mouse.getDY() * mouseSensetivity, 0, 0));
+			if(Math.abs(player.getCamera().rotX) <= 100){
+				player.getCamera().rotateX((-Mouse.getDY() * mouseSensetivity));
+//				movingBody.addRotation(new Vector3f(-Mouse.getDY() * mouseSensetivity, 0, 0));
 			}
+			
+			Vector3f caped = player.getCamera().getRotation().capMax(100).capMin(-100);
+			player.getCamera().rotX = caped.x;
 			movingBody.addRotation(new Vector3f(0, Mouse.getDX() * mouseSensetivity, 0));
 		}
 	}
