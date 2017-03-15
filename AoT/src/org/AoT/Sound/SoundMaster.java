@@ -7,6 +7,8 @@ import org.lwjgl.openal.AL;
 import org.lwjgl.openal.AL10;
 import org.lwjgl.util.WaveData;
 
+import com.Engine.Util.Vectors.Vector3f;
+
 public class SoundMaster {
 private static ArrayList <Integer> buffers = new ArrayList<Integer>();
 	
@@ -18,8 +20,8 @@ private static ArrayList <Integer> buffers = new ArrayList<Integer>();
 		}
 	}
 	
-	public static void setListenerData(){
-		AL10.alListener3f(AL10.AL_POSITION, 0, 0, 0);
+	public static void setListenerData(Vector3f position){
+		AL10.alListener3f(AL10.AL_POSITION, position.getX(), position.getY(), position.getZ());
 		AL10.alListener3f(AL10.AL_VELOCITY, 0, 0, 0);
 	}
 	
