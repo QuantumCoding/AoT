@@ -28,8 +28,8 @@ public class AoT {
 		
 		Map map = new Map("Test Map", engine) {
 			protected void initBuildings() {
-				buildings.add(new Building("res/models/Building1.obj", "/textures/HouseTexture2.png",
-						new Transform(new Vector3f(10, 0, 0), new Vector3f(), new Vector3f(7, 3, 7))));
+				buildings.add(new Building("res/models/myPerson.obj", "/textures/personTexture.png",
+						new Transform(new Vector3f(10, 12, 0), new Vector3f(), new Vector3f(1))));
 				buildings.add(new Building("res/models/Wall.obj", "/textures/Walls Texture.png"));
 			}
 		};
