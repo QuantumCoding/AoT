@@ -8,6 +8,7 @@ import org.AoT.Input.CameraMovement;
 import org.AoT.Input.PlayerMovement;
 import org.AoT.Map.Buildings.BuildingManager;
 import org.AoT.Map.Buildings.Render.BuildingRenderProperties;
+import org.AoT.Sound.SoundMaster;
 import org.AoT.Start.AoT;
 import org.AoT.Start.Engine;
 
@@ -31,7 +32,7 @@ public class Player {
 	
 	private PlayerMovement movement;
 	
-	private MovingBody thing;
+//	private MovingBody thing;
 	
 	public Player(Engine engine){
 		this.engine = engine;
@@ -72,6 +73,8 @@ public class Player {
 		camera.x = body.getPosition().x;
 		camera.y = body.getPosition().y;
 		camera.z = body.getPosition().z;
+		
+		SoundMaster.setListenerData(camera.getPosition());
 
 //		camera.rotX += body.getRotation().x;
 		camera.rotY = body.getRotation().y;

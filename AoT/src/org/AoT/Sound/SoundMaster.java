@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.openal.AL;
 import org.lwjgl.openal.AL10;
+import org.lwjgl.openal.AL11;
 import org.lwjgl.util.WaveData;
 
 import com.Engine.Util.Vectors.Vector3f;
@@ -18,11 +19,12 @@ private static ArrayList <Integer> buffers = new ArrayList<Integer>();
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 		}
+		AL10.alDistanceModel(AL11.AL_EXPONENT_DISTANCE);
 	}
 	
 	public static void setListenerData(Vector3f position){
 		AL10.alListener3f(AL10.AL_POSITION, position.getX(), position.getY(), position.getZ());
-		AL10.alListener3f(AL10.AL_VELOCITY, 0, 0, 0);
+//		AL10.alListener3f(AL10.AL_VELOCITY, 0, 0, 0);
 	}
 	
 	public static int loadSound(String file){

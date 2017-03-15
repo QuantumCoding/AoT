@@ -3,6 +3,9 @@ package org.AoT.Start;
 import org.AoT.Map.Map;
 import org.AoT.Map.Buildings.Building;
 import org.AoT.Map.Buildings.BuildingManager;
+import org.AoT.Map.Buildings.Render.BuildingShader;
+import org.AoT.Sound.SoundMaster;
+import org.AoT.Sound.SoundSource;
 import org.lwjgl.LWJGLException;
 
 import com.Engine.PhysicsEngine.Detection.Intersection.Tests.MovingEllipsoidMeshIntersectionTest;
@@ -12,6 +15,7 @@ import com.Engine.Util.Vectors.Vector3f;
 
 public class AoT {
 	private Engine engine;
+	private SoundSource source;
 	
 	public void init() throws LWJGLException {
 		engine = new Engine();
@@ -36,6 +40,12 @@ public class AoT {
 		
 		map.load();
 		
+		int buffer = SoundMaster.loadSound("sound/bounce.wav");
+		source = new SoundSource();
+		source.setLooping(true);
+		source.setRollOffFactor(.25f);
+		source.play(buffer);
+		
 		while(!engine.getWindow().isCloseRequested()) {
 			update();
 			
@@ -48,6 +58,7 @@ public class AoT {
 	public void update() {
 		engine.getPlayer().update((float) engine.getWindow().getFrameTime());
 		engine.getPhysicsEngine().simulate((float) engine.getWindow().getFrameTime());
+		source.setPosition(new Vector3f(10,12,0));
 	}
 	
 	public void render(Camera camera){
@@ -57,5 +68,6 @@ public class AoT {
 	
 	public void cleanUp() {
 		engine.getWindow().destroy();
+		SoundMaster.cleanUp();
 	}
 }

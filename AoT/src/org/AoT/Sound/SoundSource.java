@@ -9,9 +9,6 @@ public class SoundSource {
 	
 	public SoundSource(){
 		sourceId = AL10.alGenSources();
-		AL10.alSourcef(sourceId, AL10.AL_GAIN, 1);
-		AL10.alSourcef(sourceId, AL10.AL_PITCH, 1);
-		AL10.alSource3f(sourceId, AL10.AL_POSITION, 0, 0, 0);
 	}
 	
 	/*
@@ -75,6 +72,28 @@ public class SoundSource {
 	
 	public void setDirection(Vector3f direction){
 		AL10.alSource3f(sourceId, AL10.AL_DIRECTION, direction.getX(), direction.getY(), direction.getZ());
+	}
+	
+	/*
+	 * The higher this value is, the quicker the sound will decrease as the distance increases
+	 * A lower value would allow the sound to travel a longer distance 
+	 */
+	public void setRollOffFactor(float factor){
+		AL10.alSourcef(sourceId, AL10.AL_ROLLOFF_FACTOR, factor);
+	}
+	
+	/*
+	 * Distance at which the gain will be 1
+	 */
+	public void setRefrenceDistance(float distance){
+		AL10.alSourcef(sourceId, AL10.AL_REFERENCE_DISTANCE, distance);
+	}
+	
+	/*
+	 * distance at which the sound will stop decreasing
+	 */
+	public void setMaxDistance(float distance){
+		AL10.alSourcef(sourceId, AL10.AL_MAX_DISTANCE, distance);
 	}
 	
 	public boolean isPlaying(){

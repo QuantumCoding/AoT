@@ -1,6 +1,7 @@
 package org.AoT.Start;
 
 import org.AoT.Entities.Player;
+import org.AoT.Sound.SoundMaster;
 
 import com.Engine.PhysicsEngine.PhysicsEngine;
 import com.Engine.RenderEngine.RenderEngine;
@@ -22,6 +23,7 @@ public class Engine {
 		physicsEngine = new PhysicsEngine();
 		renderEngine = new RenderEngine();
 		player = new Player(this);
+		SoundMaster.init();
 	}
 
 	public PhysicsEngine getPhysicsEngine() { return physicsEngine; }
