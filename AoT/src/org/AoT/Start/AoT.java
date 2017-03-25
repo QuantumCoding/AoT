@@ -9,8 +9,10 @@ import org.AoT.Sound.SoundSource;
 import org.lwjgl.LWJGLException;
 
 import com.Engine.PhysicsEngine.Detection.Intersection.Tests.MovingEllipsoidMeshIntersectionTest;
+import com.Engine.RenderEngine.Shaders.Shader;
 import com.Engine.RenderEngine.Util.Camera;
 import com.Engine.RenderEngine.Util.RenderStructs.Transform;
+import com.Engine.Util.Vectors.MatrixUtil;
 import com.Engine.Util.Vectors.Vector3f;
 
 public class AoT {
@@ -43,7 +45,9 @@ public class AoT {
 		int buffer = SoundMaster.loadSound("sound/bounce.wav");
 		source = new SoundSource();
 		source.setLooping(true);
-		source.setRollOffFactor(.25f);
+//		source.setRollOffFactor(.25f);
+		source.setPosition(new Vector3f(10,12,0));
+		source.setVolume(100f);
 		source.play(buffer);
 		
 		while(!engine.getWindow().isCloseRequested()) {
@@ -58,7 +62,9 @@ public class AoT {
 	public void update() {
 		engine.getPlayer().update((float) engine.getWindow().getFrameTime());
 		engine.getPhysicsEngine().simulate((float) engine.getWindow().getFrameTime());
-		source.setPosition(new Vector3f(10,12,0));
+//		source.setDirection(new Vector3f(engine.getPlayer().getCamera().getPosition()));
+		if(Shader.getViewMatrix() != null)
+			source.setPosition(new Vector3f(10,12,0).transform(Shader.getViewMatrix()));
 	}
 	
 	public void render(Camera camera){

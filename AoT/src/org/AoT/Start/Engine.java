@@ -22,8 +22,8 @@ public class Engine {
 	protected void init() {
 		physicsEngine = new PhysicsEngine();
 		renderEngine = new RenderEngine();
-		player = new Player(this);
 		SoundMaster.init();
+		player = new Player(this);
 	}
 
 	public PhysicsEngine getPhysicsEngine() { return physicsEngine; }

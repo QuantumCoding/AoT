@@ -99,4 +99,6 @@ public class SoundSource {
 	public boolean isPlaying(){
 		return AL10.alGetSourcei(sourceId, AL10.AL_SOURCE_STATE) == AL10.AL_PLAYING;
 	}
+	
+	
 }

@@ -80,7 +80,9 @@ public class Player {
 		camera.rotY = body.getRotation().y;
 		camera.rotZ = body.getRotation().z;
 		
-		body.getRotation().setX(0).setZ(0);
+		
+		
+//		body.getRotation().setX(0).setZ(0);
 	}
 	
 	public void render(Camera camera) {

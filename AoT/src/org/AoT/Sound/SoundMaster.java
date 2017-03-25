@@ -19,7 +19,7 @@ private static ArrayList <Integer> buffers = new ArrayList<Integer>();
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 		}
-		AL10.alDistanceModel(AL11.AL_EXPONENT_DISTANCE);
+//		AL10.alDistanceModel(AL10.AL_INVERSE_DISTANCE);
 	}
 	
 	public static void setListenerData(Vector3f position){
@@ -31,7 +31,7 @@ private static ArrayList <Integer> buffers = new ArrayList<Integer>();
 		int buffer = AL10.alGenBuffers();
 		buffers.add(buffer);
 		WaveData waveFile = WaveData.create(file);
-		System.out.println(file);
+//		System.out.println(file);
 		AL10.alBufferData(buffer, waveFile.format, waveFile.data, waveFile.samplerate);
 		waveFile.dispose();
 		return buffer;

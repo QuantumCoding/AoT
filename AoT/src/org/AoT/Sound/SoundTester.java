@@ -15,14 +15,14 @@ public class SoundTester {
 		source.setLooping(true);
 		source.play(buffer);
 		
-		float xPos = 8;
-		source.setPosition(new Vector3f(xPos, 0, 1));
+//		float xPos = 8;
+		source.setPosition(new Vector3f(0, 0, 1));
 		
 		char c = ' ';
 		while(c != 's'){
-			xPos -= .05f;
-			source.setPosition(new Vector3f(xPos, 0, 1));
-			Thread.sleep(10);
+//			xPos -= .05f;
+//			source.setPosition(new Vector3f(xPos, 0, 1));
+//			Thread.sleep(10);
 		}
 		
 		source.delete();
