@@ -22,7 +22,7 @@ public class SoundTester {
 		while(c != 's'){
 //			xPos -= .05f;
 //			source.setPosition(new Vector3f(xPos, 0, 1));
-//			Thread.sleep(10);
+			Thread.sleep(10);
 		}
 		
 		source.delete();

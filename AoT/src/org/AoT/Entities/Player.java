@@ -4,11 +4,12 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import org.AoT.Input.CameraMovement;
+import org.AoT.Entities.Moving.Living.LivingEntity;
 import org.AoT.Input.PlayerMovement;
 import org.AoT.Map.Buildings.BuildingManager;
 import org.AoT.Map.Buildings.Render.BuildingRenderProperties;
 import org.AoT.Sound.SoundMaster;
+import org.AoT.Sound.SoundSource;
 import org.AoT.Start.AoT;
 import org.AoT.Start.Engine;
 
@@ -22,7 +23,7 @@ import com.Engine.RenderEngine.Util.RenderStructs.Transform;
 import com.Engine.RenderEngine.Window.Window;
 import com.Engine.Util.Vectors.Vector3f;
 
-public class Player {
+public class Player extends LivingEntity{
 	
 	private Engine engine;
 	private Camera camera;
@@ -35,6 +36,7 @@ public class Player {
 //	private MovingBody thing;
 	
 	public Player(Engine engine){
+		super(engine);
 		this.engine = engine;
 		
 		Window window = engine.getWindow();
